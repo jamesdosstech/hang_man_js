@@ -7,6 +7,10 @@ window.onload = function() {
     var lettersUsed = document.getElementById('lettersUsed');
     var lives = document.getElementById('lives');
     var hangman = document.getElementById('hangamn');
+    
+    //fix
+    var wordDisplayed = document.getElementsByClassName('wordDisplayed');
+    
 
     myAudio = new Audio('');
     myAudio.loop = true;
@@ -14,9 +18,12 @@ window.onload = function() {
 
     var guesses = [];
 
-    var word = wordList[Math.floor(Math.random() * wordList.length)];
-    word = word.toLowerCase(); 
-    console.log(word); 
+    // var word = wordList[Math.floor(Math.random() * wordList.length)];
+    // word = word.toLowerCase(); 
+    // console.log(word); 
+    //fix 
+    wordDisplayed = wordList[this.Math.floor(this.Math.random() * wordList.length)].toLocaleLowerCase();
+    console.log(wordDisplayed)
 
     var wordlength = word.length;
 
