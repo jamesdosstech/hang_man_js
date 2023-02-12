@@ -48,7 +48,7 @@ window.onload = function() {
     var wins = 0;
 
     var loseSound = new Audio('assets/images/your_father.mp3');
-
+sdf
     var winSound =new Audio('assets/images/forcestrong.mp3')
 
     
