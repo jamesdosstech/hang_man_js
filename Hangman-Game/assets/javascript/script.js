@@ -62,7 +62,7 @@ window.onload = function() {
         }    
     }
 
-    const winLossCondition = (a) => {
+    const winLossCondition = () => {
         if(lives > 0 && correctLetters.join('') === word ) {
             console.log('win');
             displayedWord.innerHTML = 'you win';
