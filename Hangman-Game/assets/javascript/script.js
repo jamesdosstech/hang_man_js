@@ -14,14 +14,14 @@ window.onload = function() {
     let correctLetters = [];
     let wrongLetters = []
     let word;
-    let lossVoiceLine = new Audio('assets/images/your_father.mp3');
-    let winVoiceLine = new Audio('assets/images/forcestrong.mp3');
+    const lossVoiceLine = new Audio('assets/images/your_father.mp3');
+    const winVoiceLine = new Audio('assets/images/forcestrong.mp3');
 
     //display start button
     start.innerHTML = '<button>Start</button>';
 
     const randomizeWord = () => {
-        correctLetters = [];
+        // correctLetters = [];
         word = wordList[Math.floor(Math.random() * wordList.length)].toLocaleLowerCase();
         console.log('randomized word ' + word)
         // replace letters of word with underscore
@@ -30,51 +30,64 @@ window.onload = function() {
         }
         console.log('this is the word ' + word)
     }
-    //losing conditon
     
     // check letters
     const checkLetters = () => {
         document.onkeydown = (e) => {
-            // guess letter
-            console.log('check letters ' + word, correctLetters)
-            let userGuess = e.key.toLocaleLowerCase();
-            let found = false;
-            for(i = 0; i < word.length; i++) {
-                if (userGuess === word[i]) {
-                    console.log('userguess ' + userGuess)
-                    correctLetters[i] = userGuess;
-                    found = true;
-                    displayedWord.innerHTML = correctLetters.join(' ')
+            if (start.innerHTML) {
+                //if button is visibil no input will trigger
+                return
+            } else {
+                // guess letter
+                let userGuess = e.key.toLocaleLowerCase();
+                let found = false;
+                //if correct input, insert correct letter to empty word string
+                for(i = 0; i < word.length; i++) {
+                    if (userGuess === word[i]) {
+                        console.log('userguess ' + userGuess)
+                        correctLetters[i] = userGuess;
+                        found = true;
+                        displayedWord.innerHTML = correctLetters.join(' ')
+                    }
                 }
+                if (found) {
+                    winLossCondition();
+                    counter++;
+                    displayedScore.innerHTML = `Score Board: ${counter}`;
+                } else if (!found) {
+                    winLossCondition(e);
+                    wrongLetters.push(userGuess);
+                    displayedLetters.innerHTML = `Wrong Letters: ${wrongLetters.join(' ')}`;
+                    lives -= 1;
+                    displayedLives.innerHTML = `Lives Left: ${lives}`;
+                };
             }
-            if (found) {
-                winLossCondition();
-                counter++;
-                displayedScore.innerHTML = `Score Board: ${counter}`;
-            } else if (!found) {
-                winLossCondition();
-                wrongLetters.push(userGuess);
-                displayedLetters.innerHTML = `Wrong Letters: ${wrongLetters.join(' ')}`;
-                lives--;
-                displayedLives.innerHTML = `Lives Left: ${lives}`;
-                console.log(`lives ${lives--}`);
-            };
         }    
     }
 
-    const winLossCondition = () => {
+    const winLossCondition = (e) => {
         if(lives > 0 && correctLetters.join('') === word ) {
-            console.log('win');
+            correctLetters = [];
+            winVoiceLine.play();
             displayedWord.innerHTML = 'you win';
-            return;
+            start.innerHTML = '<button>Next</button>';
+            wrongLetters = [];
+            winVoiceLine.play();
             // randomizeWord();
-        }else if (lives === 0) {
-            console.log('loss')
+        }if (lives <= 0) {
+            displayedWord.innerHTML = 'you lose';
+            wrongLetters = [];
+            correctLetters = [];
+            counter = 0;
+            lives = 6;
+            start.innerHTML = '<button>Restart</button>';
+            lossVoiceLine.play();
         }
     }
 
     const game = () => {
         // randomizeWord();
+        console.log(start.innerHTML);
         checkLetters();
     }
 
@@ -82,12 +95,14 @@ window.onload = function() {
     const startGame = (b) => {
         randomizeWord();
         game(word, correctLetters);
+        start.innerHTML = '';
+        wrongLetters = [];
         // displayedWord.innerHTML = '';
         displayedWord.innerHTML = b.join(' ');
         displayedLetters.innerHTML = `Wrong Letters: `;
         displayedRules.innerHTML = 'Type Any Letter and Attempt to Guess The Correct Star Wars Name'
-        displayedLives.innerHTML = `Lives Left: ${lives = 5}`;
-        displayedScore.innerHTML = `Score Board: ${counter = 0}`;
+        displayedLives.innerHTML = `Lives Left: ${lives}`;
+        displayedScore.innerHTML = `Score Board: ${counter}`;
         // console.log('guessed letters' + e)
 
         // game();
