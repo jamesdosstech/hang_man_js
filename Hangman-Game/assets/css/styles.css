@@ -29,4 +29,20 @@ body {
     border-radius: 2em;
     background-color: black;
     color: yellow;
+    transition-duration: 0.4s;
+}
+
+.button-container:hover {
+    margin:2em;
+    border: .1em solid white;
+    border-radius: 2em;
+    background-color: white;
+    color: black;
+}
+
+.image {
+    padding: 4em;
+    width: 600px;
+    height: 300px;
+    /* border-radius: 2%; */
 }

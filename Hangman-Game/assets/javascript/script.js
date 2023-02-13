@@ -1,5 +1,25 @@
 window.onload = function() {
-    let wordList = ['Skywalker', 'Stormtrooper', 'Amidala'];
+    let wordList = [
+        'Skywalker', 
+        'Stormtrooper', 
+        'Amidala',
+        'QuiGonJinn',
+        'DeathStar',
+        'StarWars',
+        'ANewHope',
+        'EmpireStrikesBack',
+        'ReturnOfTheJedi',
+        'PhantomMenace',
+        'AttackOfTheClones',
+        'RevengeOfTheSith',
+        'Anakin',
+        'Princess',
+        'Force',
+        'Jedi',
+        'Naboo',
+        'Coruscant',
+        'Tatooine',
+    ];
     //declarations
     //html
     const start = document.getElementById('button');
@@ -34,17 +54,17 @@ window.onload = function() {
     const changeImage = () => {
         console.log(`life count ${lives}`)
         if(lives == 5) {
-            displayedImage.innerHTML = "<img src='./assets/images/start_image.jpg' />";
+            displayedImage.innerHTML = "<img class='image' src='./assets/images/start_image.jpg' />";
         }if(lives == 4) {
-            displayedImage.innerHTML = "<img src='./assets/images/one_limb.jpg' />";
+            displayedImage.innerHTML = "<img class='image' src='./assets/images/one_limb.jpg' />";
         }if(lives == 3) {
-            displayedImage.innerHTML = "<img src='./assets/images/limb_2_ready.jpg' />";
+            displayedImage.innerHTML = "<img class='image' src='./assets/images/limb_2_ready.jpg' />";
         }if(lives == 2) {
-            displayedImage.innerHTML = "<img src='./assets/images/limb_2_gone.gif' />";
+            displayedImage.innerHTML = "<img class='image' src='./assets/images/limb_2_gone.gif' />";
         }if(lives == 1) {
-            displayedImage.innerHTML = "<img src='./assets/images/darth_vader_1.jpg' />";
+            displayedImage.innerHTML = "<img class='image' src='./assets/images/darth_vader_1.jpg' />";
         }if(lives == 0) {
-            displayedImage.innerHTML = "<img src='./assets/images/darth_vader_2.jpg' />";
+            displayedImage.innerHTML = "<img class='image' src='./assets/images/darth_vader_2.jpg' />";
         }
     }
     
